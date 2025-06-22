@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #f7f9fc;
+  background-color: #ecdfc9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,34 +27,22 @@ body {
   text-align: center;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 15px;
-}
-
-.logo {
-  width: 32px;
-  height: 32px;
-  margin-right: 8px;
-}
-
 .brand {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #444;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #331922;
+  margin-bottom: 10px;
 }
 
 .welcome-text {
   font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #111;
+  color: #331922;
 }
 
 .subheading {
-  color: #7038b5;
+  color: #331922;
   font-weight: 500;
   margin-bottom: 20px;
 }
@@ -65,14 +53,14 @@ form input[type="password"] {
   padding: 12px 15px;
   margin-bottom: 15px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #bbb;
   font-size: 14px;
   transition: border-color 0.3s ease;
 }
 
 form input[type="email"]:focus,
 form input[type="password"]:focus {
-  border-color: #7038b5;
+  border-color: #331922;
   outline: none;
 }
 
@@ -82,7 +70,7 @@ form input[type="password"]:focus {
   justify-content: flex-start;
   margin-bottom: 20px;
   font-size: 14px;
-  color: #444;
+  color: #331922;
 }
 
 .checkbox-group input {
@@ -90,7 +78,7 @@ form input[type="password"]:focus {
 }
 
 .btn {
-  background-color: #7089e0;
+  background-color: #331922;
   color: white;
   border: none;
   padding: 12px;
@@ -103,17 +91,17 @@ form input[type="password"]:focus {
 }
 
 .btn:hover {
-  background-color: #5d6dc4;
+  background-color: #4b2b33;
 }
 
 .footer-text {
   font-size: 14px;
-  color: #444;
+  color: #331922;
   margin-top: 20px;
 }
 
 .footer-text a {
-  color: #7038b5;
+  color: #331922;
   text-decoration: none;
   font-weight: 500;
 }
