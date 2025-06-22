@@ -1,31 +1,28 @@
-document.getElementById("signupForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // Prevent form refresh
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("signupForm");
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
-  const rememberMe = document.getElementById("rememberMe").checked;
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // 💥 Stops form from refreshing
 
-  // Password match check
-  if (password !== confirmPassword) {
-    alert("Passwords do not match!");
-    return;
-  }
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      const rememberMe = document.getElementById("rememberMe").checked;
 
-  // OPTIONAL: Store email locally (just for demo purposes)
-  localStorage.setItem("vocaleyes_user", email);
-  if (rememberMe) {
-    localStorage.setItem("rememberMe", "true");
-  }
+      // 🔐 Password Match Validation
+      if (password !== confirmPassword) {
+        alert("Passwords don't match, my love 🥺");
+        return;
+      }
 
-  // Redirect to emotion input page
-  window.location.href = "speak.html";
-});
+      // ✅ Store data locally if needed (optional)
+      if (rememberMe) {
+        localStorage.setItem("vocaleyes_remember", email);
+      }
 
-    speechSynthesis.speak(utterance);
-
-  } catch (error) {
-    console.error("🚨 API Error:", error);
-    alert("Something went wrong. Check your internet or backend.");
+      // 🚀 Redirect to speak.html
+      window.location.href = "speak.html";
+    });
   }
 });
