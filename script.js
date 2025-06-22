@@ -8,7 +8,7 @@ document.getElementById('speakBtn').addEventListener('click', async () => {
   }
 
   try {
-    const response = await fetch('https://vocal-eyes-k95lcx0hd-srijoni-s-projects.vercel.app/api/enhance', {
+    const response = await fetch('/api/enhance', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -24,16 +24,19 @@ document.getElementById('speakBtn').addEventListener('click', async () => {
     }
 
     const enhancedMessage = data.enhanced.trim();
-    console.log("Enhanced Message:", enhancedMessage);
+    console.log("🔊 Enhanced Message:", enhancedMessage);
 
-    // Speak the message
+    // Speak the enhanced message with emotion
     const utterance = new SpeechSynthesisUtterance(enhancedMessage);
+    utterance.lang = 'en-US';
     utterance.rate = 1;
-    utterance.pitch = 1;
+    utterance.pitch = 1.1; // slight pitch boost for more expression
+
     speechSynthesis.speak(utterance);
 
   } catch (error) {
-    console.error("Error:", error);
+    console.error("🚨 Error:", error);
     alert("Something went wrong. Please try again.");
   }
 });
+
