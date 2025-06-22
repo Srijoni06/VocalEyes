@@ -1,40 +1,26 @@
-document.getElementById('speakBtn').addEventListener('click', async () => {
-  const message = document.getElementById('message')?.value.trim();
-  const emotion = document.getElementById('emotion')?.value;
+document.getElementById("signupForm").addEventListener("submit", function (e) {
+  e.preventDefault(); // Prevent form refresh
 
-  if (!message) {
-    alert("Please enter a message.");
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const rememberMe = document.getElementById("rememberMe").checked;
+
+  // Password match check
+  if (password !== confirmPassword) {
+    alert("Passwords do not match!");
     return;
   }
 
-  try {
-    const response = await fetch('/api/enhance', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ message, emotion })
-    });
+  // OPTIONAL: Store email locally (just for demo purposes)
+  localStorage.setItem("vocaleyes_user", email);
+  if (rememberMe) {
+    localStorage.setItem("rememberMe", "true");
+  }
 
-    const data = await response.json();
-
-    if (!data?.enhanced) {
-      alert("Failed to enhance message. Try again.");
-      return;
-    }
-
-    const enhancedMessage = data.enhanced.trim();
-    console.log("✨ Enhanced:", enhancedMessage);
-
-    // Stop current speech if ongoing
-    if (speechSynthesis.speaking) {
-      speechSynthesis.cancel();
-    }
-
-    const utterance = new SpeechSynthesisUtterance(enhancedMessage);
-    utterance.lang = 'en-US';
-    utterance.pitch = 1.1;
-    utterance.rate = 1;
+  // Redirect to emotion input page
+  window.location.href = "speak.html";
+});
 
     speechSynthesis.speak(utterance);
 
