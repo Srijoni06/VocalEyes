@@ -1,6 +1,6 @@
 document.getElementById('speakBtn').addEventListener('click', async () => {
-  const message = document.getElementById('message').value.trim();
-  const emotion = document.getElementById('emotion').value;
+  const message = document.getElementById('message')?.value.trim();
+  const emotion = document.getElementById('emotion')?.value;
 
   if (!message) {
     alert("Please enter a message.");
@@ -18,25 +18,28 @@ document.getElementById('speakBtn').addEventListener('click', async () => {
 
     const data = await response.json();
 
-    if (!data.enhanced) {
+    if (!data?.enhanced) {
       alert("Failed to enhance message. Try again.");
       return;
     }
 
     const enhancedMessage = data.enhanced.trim();
-    console.log("🔊 Enhanced Message:", enhancedMessage);
+    console.log("✨ Enhanced:", enhancedMessage);
 
-    // Speak the enhanced message with emotion
+    // Stop current speech if ongoing
+    if (speechSynthesis.speaking) {
+      speechSynthesis.cancel();
+    }
+
     const utterance = new SpeechSynthesisUtterance(enhancedMessage);
     utterance.lang = 'en-US';
+    utterance.pitch = 1.1;
     utterance.rate = 1;
-    utterance.pitch = 1.1; // slight pitch boost for more expression
 
     speechSynthesis.speak(utterance);
 
   } catch (error) {
-    console.error("🚨 Error:", error);
-    alert("Something went wrong. Please try again.");
+    console.error("🚨 API Error:", error);
+    alert("Something went wrong. Check your internet or backend.");
   }
 });
-
