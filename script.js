@@ -1,29 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
+document.getElementById("signupForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault(); // Stop default reload
+  // Basic validation (you can add more if needed)
+  const password = document.getElementById("password").value;
+  const confirm = document.getElementById("confirmPassword").value;
 
-    const email = form.querySelector('input[type="email"]').value.trim();
-    const password = form.querySelectorAll('input[type="password"]')[0].value.trim();
-    const confirmPassword = form.querySelectorAll('input[type="password"]')[1].value.trim();
-    const remember = form.querySelector('input[type="checkbox"]').checked;
+  if (password !== confirm) {
+    alert("Passwords do not match!");
+    return;
+  }
 
-    // Simple validation
-    if (!email || !password || !confirmPassword) {
-      alert("Please fill in all fields.");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      alert("Passwords do not match.");
-      return;
-    }
-
-    // Simulate signup process
-    alert(`Signed up successfully!\nEmail: ${email}\nRemember login: ${remember ? "Yes" : "No"}`);
-
-    // Clear form
-    form.reset();
-  });
+  // Simulate successful signup and redirect
+  window.location.href = "speak.html";
 });
