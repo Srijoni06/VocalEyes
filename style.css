@@ -44,3 +44,9 @@ a {
   color: #331922;
   text-decoration: underline;
 }
+.error {
+  color: #d10000;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
