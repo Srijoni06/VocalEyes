@@ -1,52 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: #ecdfc9;
-  color: #331922;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.signup-container {
+  background-color: #f9f2e8;
+  padding: 40px 35px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 350px;
+  max-width: 90%;
+}
+
+.app-title {
   text-align: center;
-  padding: 50px;
-}
-
-.container {
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.title {
   font-size: 36px;
-  font-weight: bold;
   color: #331922;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
+  font-weight: 700;
 }
 
-input, button {
+.signup-form .input-group {
+  margin-bottom: 20px;
+}
+
+.signup-form label {
   display: block;
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-}
-
-input {
-  background-color: #fff;
+  margin-bottom: 6px;
   color: #331922;
-}
-
-button {
-  background-color: #331922;
-  color: #ecdfc9;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-a {
-  color: #331922;
-  text-decoration: underline;
-}
-.error {
-  color: #d10000;
-  margin-top: 10px;
   font-weight: 600;
+}
+
+.signup-form input[type="email"],
+.signup-form input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid #d6c4b1;
+  background-color: #fff;
+  font-size: 15px;
+  color: #331922;
+  transition: 0.3s ease;
+}
+
+.signup-form input:focus {
+  border-color: #331922;
+  outline: none;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 15px 0;
   font-size: 14px;
+  color: #331922;
+}
+
+.signup-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #331922;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.signup-form button:hover {
+  background-color: #4d2c1f;
+}
+
+.switch-page {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #331922;
+}
+
+.switch-page a {
+  color: #331922;
+  font-weight: 600;
+  text-decoration: underline;
 }
