@@ -1,4 +1,6 @@
-export default async function handler(req, res) {
+const fetch = require('node-fetch');
+
+module.exports = async function handler(req, res) {
   try {
     const { message, emotion } = req.body;
 
@@ -30,4 +32,9 @@ export default async function handler(req, res) {
 
     const enhancedMessage = data.choices[0].message.content.trim();
 
-    res.status(200).json({ success: true
+    res.status(200).json({ success: true, enhanced: enhancedMessage });
+  } catch (err) {
+    console.error("Enhance API error:", err);
+    res.status(500).json({ success: false, error: "Internal Server Error" });
+  }
+};
