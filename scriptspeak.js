@@ -1,43 +1,56 @@
-const speakButton = document.getElementById("speakButton");
-
-speakButton.addEventListener("click", async () => {
-  const message = document.getElementById("messageInput").value.trim();
-  const emotion = document.getElementById("emotionSelect").value;
+document.getElementById('speakBtn').onclick = function () {
+  const message = document.getElementById('message').value.trim();
+  const emotion = document.getElementById('emotion').value;
 
   if (!message) {
-    alert("Please type a message first.");
+    alert("Please enter a message to speak!");
     return;
   }
 
-  try {
-    const response = await fetch("/api/enhance", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: message,
-        emotion: emotion
-      })
-    });
+  const utter = new SpeechSynthesisUtterance(message);
 
-    const data = await response.json();
-
-    if (!data.success) {
-      throw new Error(data.error || "Failed to get response");
-    }
-
-    const enhancedMessage = data.enhancedMessage.trim();
-    console.log("Enhanced:", enhancedMessage);
-
-    // Speak the message
-    const utterance = new SpeechSynthesisUtterance(enhancedMessage);
-    utterance.lang = "en-US";
-    utterance.rate = 1;
-    utterance.pitch = 1;
-    window.speechSynthesis.speak(utterance);
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Something went wrong. Please try again.");
+  switch (emotion) {
+    case 'Happy':
+      utter.pitch = 1.5;
+      utter.rate = 1.2;
+      utter.volume = 1;
+      break;
+    case 'Sad':
+      utter.pitch = 0.8;
+      utter.rate = 0.9;
+      utter.volume = 0.8;
+      break;
+    case 'Angry':
+      utter.pitch = 1.1;
+      utter.rate = 1.4;
+      utter.volume = 1;
+      break;
+    case 'Surprised':
+      utter.pitch = 1.8;
+      utter.rate = 1.3;
+      utter.volume = 1;
+      break;
+    case 'Nervous':
+      utter.pitch = 1.3;
+      utter.rate = 1.5;
+      utter.volume = 0.9;
+      break;
+    case 'Fear':
+      utter.pitch = 1.3;
+      utter.rate = 1;
+      utter.volume = 0.7;
+      break;
+    case 'Disgust':
+      utter.pitch = 0.7;
+      utter.rate = 0.8;
+      utter.volume = 0.9;
+      break;
+    default:
+      utter.pitch = 1;
+      utter.rate = 1;
+      utter.volume = 1;
   }
-});
+
+  window.speechSynthesis.cancel(); // shut up the last guy
+  window.speechSynthesis.speak(utter); // and slay with the new one 😤
+};
