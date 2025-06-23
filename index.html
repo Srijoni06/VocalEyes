@@ -5,35 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>VocalEyes - Sign Up</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="signup-container">
+    <h1 class="app-title">VocalEyes</h1>
 
-  <div class="container">
-    <h1 class="title">VocalEyes</h1>
-    
-    <form id="signupForm">
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Enter your email" required />
+    <form id="signupForm" class="signup-form">
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required />
+      </div>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Enter your password" required />
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required />
+      </div>
 
-      <label for="confirmPassword">Confirm Password</label>
-      <input type="password" id="confirmPassword" placeholder="Confirm your password" required />
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm your password" required />
+      </div>
 
-      <div class="checkbox-row">
+      <div class="checkbox-group">
         <input type="checkbox" id="rememberMe" />
         <label for="rememberMe">Remember me</label>
       </div>
 
       <button type="submit" id="signupBtn">Sign Up</button>
 
-      <p class="error" id="errorMsg"></p>
-
-      <p>Already have an account? <a href="signin.html">Sign in</a></p>
+      <p class="switch-page">Already have an account? <a href="signin.html">Sign in</a></p>
     </form>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
