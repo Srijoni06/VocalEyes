@@ -2,33 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VocalEyes - Speak With Emotion</title>
-  <link rel="stylesheet" href="stylespeak.css" />
-  <script defer src="scriptspeak.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Speak - VocalEyes</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
 </head>
-<body>
-  <div class="container">
+<body class="speak-body">
+  <div class="speak-container">
     <h1 class="title">VocalEyes</h1>
     <h2 class="subtitle">Speak With Emotion</h2>
 
-    <textarea id="messageInput" placeholder="Type your message here..."></textarea>
+    <textarea id="message" placeholder="Type your message here..."></textarea>
 
-    <label for="emotionSelect" class="label">Select Emotion</label>
-    <select id="emotionSelect">
-      <option value="Happy">Happy</option>
-      <option value="Sad">Sad</option>
-      <option value="Angry">Angry</option>
-      <option value="Excited">Excited</option>
-      <option value="Calm">Calm</option>
-      <option value="Nervous">Nervous</option>
-      <option value="Fear">Fear</option>
-      <option value="Disgust">Disgust</option>
-      <option value="Surprised">Surprised</option>
-      <option value="Affectionate">Affectionate</option>
+    <label for="emotion">Select Emotion</label>
+    <select id="emotion">
+      <option>Happy</option>
+      <option>Sad</option>
+      <option>Angry</option>
+      <option>Excited</option>
+      <option>Calm</option>
+      <option>Nervous</option>
+      <option>Fear</option>
+      <option>Disgust</option>
+      <option>Hopeful</option>
+      <option>Confused</option>
     </select>
 
-    <button id="speakButton">Speak For Me</button>
+    <button id="speakBtn">Speak For Me</button>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
