@@ -1,56 +1,91 @@
-document.getElementById('speakBtn').onclick = function () {
-  const message = document.getElementById('message').value.trim();
-  const emotion = document.getElementById('emotion').value;
+document.addEventListener("DOMContentLoaded", () => {
+  const speakBtn = document.getElementById("speakBtn");
 
-  if (!message) {
-    alert("Please enter a message to speak!");
-    return;
+  if (speakBtn) {
+    speakBtn.addEventListener("click", async () => {
+      const message = document.getElementById("message").value.trim();
+      const emotion = document.getElementById("emotion").value;
+
+      if (!message) {
+        alert("Type something first 😤");
+        return;
+      }
+
+      try {
+        const response = await fetch('https://vocal-eyes-k95lcx0hd-srijoni-s-projects.vercel.app/api/enhance', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ message, emotion })
+        });
+
+        const data = await response.json();
+
+        if (!data.enhanced) {
+          alert("Something went wrong 😭 try again later.");
+          return;
+        }
+
+        const enhancedMessage = data.enhanced.trim();
+        console.log("✨ Enhanced Message:", enhancedMessage);
+
+        if (speechSynthesis.speaking) {
+          speechSynthesis.cancel(); // Stop current speaking
+        }
+
+        const utterance = new SpeechSynthesisUtterance(enhancedMessage);
+
+        // 💅 Emotion-Based Voice Settings
+        switch (emotion.toLowerCase()) {
+          case "happy":
+            utterance.pitch = 1.5;
+            utterance.rate = 1.2;
+            utterance.volume = 1;
+            break;
+          case "sad":
+            utterance.pitch = 0.8;
+            utterance.rate = 0.9;
+            utterance.volume = 0.8;
+            break;
+          case "angry":
+            utterance.pitch = 1.1;
+            utterance.rate = 1.4;
+            utterance.volume = 1;
+            break;
+          case "surprised":
+            utterance.pitch = 1.8;
+            utterance.rate = 1.3;
+            utterance.volume = 1;
+            break;
+          case "nervous":
+            utterance.pitch = 1.3;
+            utterance.rate = 1.5;
+            utterance.volume = 0.9;
+            break;
+          case "fear":
+            utterance.pitch = 1.3;
+            utterance.rate = 1;
+            utterance.volume = 0.7;
+            break;
+          case "disgust":
+            utterance.pitch = 0.7;
+            utterance.rate = 0.8;
+            utterance.volume = 0.9;
+            break;
+          default:
+            utterance.pitch = 1;
+            utterance.rate = 1;
+            utterance.volume = 1;
+        }
+
+        // 🗣️ Speak it loud, speak it emotional
+        speechSynthesis.speak(utterance);
+
+      } catch (err) {
+        console.error("Fetch error:", err);
+        alert("Error speaking out your message 😭");
+      }
+    });
   }
-
-  const utter = new SpeechSynthesisUtterance(message);
-
-  switch (emotion) {
-    case 'Happy':
-      utter.pitch = 1.5;
-      utter.rate = 1.2;
-      utter.volume = 1;
-      break;
-    case 'Sad':
-      utter.pitch = 0.8;
-      utter.rate = 0.9;
-      utter.volume = 0.8;
-      break;
-    case 'Angry':
-      utter.pitch = 1.1;
-      utter.rate = 1.4;
-      utter.volume = 1;
-      break;
-    case 'Surprised':
-      utter.pitch = 1.8;
-      utter.rate = 1.3;
-      utter.volume = 1;
-      break;
-    case 'Nervous':
-      utter.pitch = 1.3;
-      utter.rate = 1.5;
-      utter.volume = 0.9;
-      break;
-    case 'Fear':
-      utter.pitch = 1.3;
-      utter.rate = 1;
-      utter.volume = 0.7;
-      break;
-    case 'Disgust':
-      utter.pitch = 0.7;
-      utter.rate = 0.8;
-      utter.volume = 0.9;
-      break;
-    default:
-      utter.pitch = 1;
-      utter.rate = 1;
-      utter.volume = 1;
-  }
-
-  window.speechSynthesis.cancel(); // shut up the last guy
-  window.speechSynthesis.speak(utter); // and slay with the new one 😤
-};
+});
