@@ -1,18 +1,21 @@
-document.getElementById('signinForm').addEventListener('submit', function(e) {
-  e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("signinForm");
 
-  const email = document.getElementById('signinEmail').value.trim();
-  const password = document.getElementById('signinPassword').value;
-  const errorEl = document.getElementById('loginError');
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-  errorEl.textContent = '';
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-  // Temporary validation logic
-  if (!email || !password) {
-    errorEl.textContent = 'Fill both fields to sign in.';
-    return;
+      if (!email || !password) {
+        alert("Fill in both fields 😤");
+        return;
+      }
+
+      // 🔒 Dummy login logic
+      alert("Welcome back, you're in! 💅");
+      window.location.href = "speak.html";
+    });
   }
-
-  // Simulate login & redirect
-  return window.location.href = 'speak.html';
 });
