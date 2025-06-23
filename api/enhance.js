@@ -1,15 +1,11 @@
-const fetch = require('node-fetch'); // Ensure you have this if not in Vercel runtime
+const fetch = require('node-fetch');
 
 module.exports = async (req, res) => {
   try {
-    if (req.method !== 'POST') {
-      return res.status(405).json({ success: false, error: 'Method not allowed' });
-    }
-
     const { message, emotion } = req.body;
 
     if (!message || !emotion) {
-      return res.status(400).json({ success: false, error: 'Message or emotion missing' });
+      return res.status(400).json({ success: false, error: "Message or emotion missing" });
     }
 
     const prompt = `Enhance the following sentence in a ${emotion.toLowerCase()} tone: "${message}"`;
@@ -30,7 +26,7 @@ module.exports = async (req, res) => {
 
     const data = await response.json();
 
-    if (!data.choices || !data.choices[0]?.message?.content) {
+    if (!data.choices || !data.choices[0].message) {
       return res.status(500).json({ success: false, error: "No valid response from OpenAI" });
     }
 
@@ -38,7 +34,7 @@ module.exports = async (req, res) => {
 
     res.status(200).json({ success: true, enhanced: enhancedMessage });
   } catch (err) {
-    console.error("Enhance API error:", err);
-    res.status(500).json({ success: false, error: "Internal Server Error" });
+    console.error("API ERROR:", err);
+    res.status(500).json({ success: false, error: "Internal server error" });
   }
 };
