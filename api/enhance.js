@@ -2,6 +2,15 @@ const fetch = require('node-fetch');
 
 module.exports = async (req, res) => {
   try {
+
+    res.setHeader("Access-Control-Allow-Origin", "https://vocal-eyes-rose.vercel.app");
+    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+    if (req.method === "OPTIONS") {
+      return res.status(200).end();
+    }
+
     const { message, emotion } = req.body;
 
     if (!message || !emotion) {
